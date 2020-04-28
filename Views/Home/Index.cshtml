@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Taco>
+
+<div class="jumbotron jumbotron-fluid">
+    <h1>Kaiju Tacos</h1>
+</div>
+    
+<table class="table" id="tacos">
+    <tr>
+        <th>Shell</th>
+        <th>Protein</th>
+        <th>Calories</th>
+        <th>Fillings</th>
+    </tr>
+    @foreach (var taco in Model)
+    {
+        <tr>
+            <td>@taco.ShellType</td>
+            <td>@taco.Protein</td>
+            <td>@taco.Calories</td>
+            <td>@taco.Fillings</td>
+        </tr>
+    }
+</table>
+
+<button class="btn btn-primary" id="toggle">Add Tacos</button><br><br>
+
+<form action="/addtaco" method="post" id="form" style="display:none;">
+    <div class="row">
+        <div class="col">
+            <div class="form-group" id="ShellType">
+                <label>Shell</label>
+                <select name="ShellType" class="form-control">
+                    <option>Hard</option>
+                    <option>Soft</option>
+                    <option>Why not both?</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group" id="Protein">
+                <label>Protein</label>
+                <input type="text" name="Protein" class="form-control">
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group" id="Calories">
+                <label>Calories</label>
+                <input type="number" name="Calories" class="form-control">
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group" id="Fillings">
+                <label>Fillings</label>
+                <textarea type="text" name="Fillings" class="form-control"></textarea>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Assemble Taco</button>
+</form>
